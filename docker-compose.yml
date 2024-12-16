@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: my_user
+      POSTGRES_PASSWORD: my_password
+      POSTGRES_DB: my_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U my_user -d my_database"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: app_container
+    environment:
+      # Эти переменные можно читать в AppConfig или System.getProperty, затем установить их в DatabaseConnectionManager
+      DB_URL: jdbc:postgresql://localhost:5432/postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: 12345
+      DB_DRIVER: org.postgresql.Driver
+      DB_POOL_SIZE: 30
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    # Дожидаемся готовности базы
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/myapp/ || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  pgdata:
