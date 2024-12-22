@@ -1,19 +1,21 @@
-package org.example.Entity;
-public class Product {
+package org.example.dto;
+
+
+public class ProductDTO {
     private int id;
     private String name;
     private double price;
-    private Customer customer;
+    private int customerId;
 
 
-    public Product() {}
+    public ProductDTO() {}
 
-    public Product(int id, String name, double price) {
+    public ProductDTO(int id, String name, double price, int customerId) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.customerId = customerId;
     }
-
 
     public int getId() {
         return id;
@@ -39,11 +41,11 @@ public class Product {
         this.price = price;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 }

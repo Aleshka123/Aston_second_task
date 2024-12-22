@@ -1,7 +1,7 @@
 package org.example.mapper;
 
-import org.example.DTO.ProductDTO;
-import org.example.Entity.Product;
+import org.example.dto.ProductDTO;
+import org.example.entity.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

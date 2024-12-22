@@ -1,6 +1,6 @@
-package org.example.Servise;
+package org.example.servise;
 
-import org.example.DTO.ProductDTO;
+import org.example.dto.ProductDTO;
 import java.util.List;
 
 public interface ProductService {

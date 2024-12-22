@@ -1,5 +1,5 @@
-import org.example.Config.AppConfig;
-import org.example.Config.DatabaseConnectionManager;
+import org.example.config.AppConfig;
+import org.example.config.DatabaseConnectionManager;
 import org.junit.jupiter.api.Test;
 
 

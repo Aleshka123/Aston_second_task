@@ -1,12 +1,12 @@
-package org.example.Servlets;
+package org.example.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.Config.DatabaseConnectionManager;
-import org.example.DTO.CustomerDTO;
-import org.example.Repository.CustomerRepository;
-import org.example.Repository.CustomerRepositoryImpl;
-import org.example.Servise.CustomerService;
-import org.example.Servise.CustomerServiceImpl;
+import org.example.config.DatabaseConnectionManager;
+import org.example.dto.ProductDTO;
+import org.example.repository.ProductRepository;
+import org.example.repository.ProductRepositoryImpl;
+import org.example.servise.ProductService;
+import org.example.servise.ProductServiceImpl;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,44 +18,43 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/customers/*")
-public class CustomerServlet extends HttpServlet {
+@WebServlet("/products/*")
+public class ProductServlet extends HttpServlet {
 
-    private final CustomerService customerService;
+    private final ProductService productService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public CustomerServlet() {
+    public ProductServlet() {
         try {
             // Получаем DataSource из DatabaseConnectionManager
             DataSource dataSource = DatabaseConnectionManager.getDataSource();
 
-            // Используем реализацию CustomerRepository
-            CustomerRepository customerRepository = new CustomerRepositoryImpl(dataSource);
+            // Используем реализацию ProductRepository
+            ProductRepository productRepository = new ProductRepositoryImpl(dataSource);
 
-            // Создаём CustomerService с репозиторием
-            this.customerService = new CustomerServiceImpl(customerRepository);
+            // Создаём ProductService с репозиторием
+            this.productService = new ProductServiceImpl(productRepository);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to initialize CustomerServlet", e);
+            throw new RuntimeException("Failed to initialize ProductServlet", e);
         }
     }
-
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pathInfo = req.getPathInfo();
 
         if (pathInfo == null || pathInfo.equals("/")) {
-            List<CustomerDTO> customers = customerService.getAllCustomers();
+            List<ProductDTO> products = productService.getAllProducts();
             resp.setContentType("application/json");
-            resp.getWriter().write(objectMapper.writeValueAsString(customers));
+            resp.getWriter().write(objectMapper.writeValueAsString(products));
         } else {
             try {
                 int id = Integer.parseInt(pathInfo.substring(1));
-                CustomerDTO customer = customerService.getCustomerById(id);
+                ProductDTO product = productService.getProductById(id);
                 resp.setContentType("application/json");
-                resp.getWriter().write(objectMapper.writeValueAsString(customer));
+                resp.getWriter().write(objectMapper.writeValueAsString(product));
             } catch (NumberFormatException e) {
-                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid customer ID");
+                resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid product ID");
             } catch (RuntimeException e) {
                 resp.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
             }
@@ -65,8 +64,8 @@ public class CustomerServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            CustomerDTO customerDTO = objectMapper.readValue(req.getReader(), CustomerDTO.class);
-            customerService.createCustomer(customerDTO);
+            ProductDTO productDTO = objectMapper.readValue(req.getReader(), ProductDTO.class);
+            productService.createProduct(productDTO);
             resp.setStatus(HttpServletResponse.SC_CREATED);
         } catch (Exception e) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid input data");
@@ -76,8 +75,8 @@ public class CustomerServlet extends HttpServlet {
     @Override
     public void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            CustomerDTO customerDTO = objectMapper.readValue(req.getReader(), CustomerDTO.class);
-            customerService.updateCustomer(customerDTO);
+            ProductDTO productDTO = objectMapper.readValue(req.getReader(), ProductDTO.class);
+            productService.updateProduct(productDTO);
             resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
         } catch (Exception e) {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid input data");
@@ -89,16 +88,16 @@ public class CustomerServlet extends HttpServlet {
         String pathInfo = req.getPathInfo();
 
         if (pathInfo == null || pathInfo.equals("/")) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Customer ID is required");
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Product ID is required");
             return;
         }
 
         try {
             int id = Integer.parseInt(pathInfo.substring(1));
-            customerService.deleteCustomer(id);
+            productService.deleteProduct(id);
             resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
         } catch (NumberFormatException e) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid customer ID");
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid product ID");
         }
     }
 }

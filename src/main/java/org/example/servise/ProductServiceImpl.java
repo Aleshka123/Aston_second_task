@@ -1,9 +1,9 @@
-package org.example.Servise;
+package org.example.servise;
 
 
-import org.example.DTO.ProductDTO;
-import org.example.Entity.Product;
-import org.example.Repository.ProductRepository;
+import org.example.dto.ProductDTO;
+import org.example.entity.Product;
+import org.example.repository.ProductRepository;
 import org.example.mapper.ProductMapper;
 
 import java.util.List;

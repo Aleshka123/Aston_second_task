@@ -1,8 +1,8 @@
-import org.example.DTO.CustomerDTO;
-import org.example.DTO.ProductDTO;
+import org.example.dto.CustomerDTO;
+import org.example.dto.ProductDTO;
 import org.junit.jupiter.api.Test;
-import org.example.Entity.Product;
-import org.example.Entity.Customer;
+import org.example.entity.Product;
+import org.example.entity.Customer;
 
 import static org.junit.jupiter.api.Assertions.*;
 

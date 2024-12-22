@@ -1,7 +1,7 @@
-package org.example.Repository;
+package org.example.repository;
 
-import org.example.Entity.Product;
-import org.example.Entity.Customer;
+import org.example.entity.Product;
+import org.example.entity.Customer;
 
 import javax.sql.DataSource;
 import java.sql.*;

@@ -1,8 +1,8 @@
-import org.example.DTO.CustomerDTO;
-import org.example.Entity.Customer;
-import org.example.Repository.CustomerRepository;
-import org.example.Servise.CustomerService;
-import org.example.Servise.CustomerServiceImpl;
+import org.example.dto.CustomerDTO;
+import org.example.entity.Customer;
+import org.example.repository.CustomerRepository;
+import org.example.servise.CustomerService;
+import org.example.servise.CustomerServiceImpl;
 import org.junit.jupiter.api.Test;
 
 

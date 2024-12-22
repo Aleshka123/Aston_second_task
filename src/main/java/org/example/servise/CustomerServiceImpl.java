@@ -1,8 +1,8 @@
-package org.example.Servise;
+package org.example.servise;
 
-import org.example.DTO.CustomerDTO;
-import org.example.Entity.Customer;
-import org.example.Repository.CustomerRepository;
+import org.example.dto.CustomerDTO;
+import org.example.entity.Customer;
+import org.example.repository.CustomerRepository;
 import org.example.mapper.CustomerMapper;
 import java.util.List;
 import java.util.stream.Collectors;

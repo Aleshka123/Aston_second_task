@@ -1,8 +1,8 @@
-import org.example.DTO.ProductDTO;
-import org.example.Entity.Product;
-import org.example.Repository.ProductRepository;
-import org.example.Servise.ProductService;
-import org.example.Servise.ProductServiceImpl;
+import org.example.dto.ProductDTO;
+import org.example.entity.Product;
+import org.example.repository.ProductRepository;
+import org.example.servise.ProductService;
+import org.example.servise.ProductServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import static org.junit.jupiter.api.Assertions.assertThrows;

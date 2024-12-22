@@ -1,10 +1,10 @@
-import org.example.Config.DatabaseConnectionManager;
-import org.example.Entity.Customer;
-import org.example.Entity.Product;
-import org.example.Repository.CustomerRepository;
-import org.example.Repository.CustomerRepositoryImpl;
-import org.example.Repository.ProductRepository;
-import org.example.Repository.ProductRepositoryImpl;
+import org.example.config.DatabaseConnectionManager;
+import org.example.entity.Customer;
+import org.example.entity.Product;
+import org.example.repository.CustomerRepository;
+import org.example.repository.CustomerRepositoryImpl;
+import org.example.repository.ProductRepository;
+import org.example.repository.ProductRepositoryImpl;
 import org.junit.jupiter.api.*;
 import org.testcontainers.containers.PostgreSQLContainer;
 

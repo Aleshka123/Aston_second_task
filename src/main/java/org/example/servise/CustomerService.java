@@ -1,6 +1,6 @@
-package org.example.Servise;
+package org.example.servise;
 
-import org.example.DTO.CustomerDTO;
+import org.example.dto.CustomerDTO;
 import java.util.List;
 
 public interface CustomerService {

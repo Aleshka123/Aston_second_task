@@ -1,24 +1,20 @@
-package org.example.Entity;
-
-
-import java.util.ArrayList;
+package org.example.dto;
 import java.util.List;
 
-public class Customer {
+public class CustomerDTO {
     private int id;
     private String name;
     private String email;
-    private List<Product> products = new ArrayList<>();
+    private List<Integer> productIds;
 
+    public CustomerDTO() {}
 
-    public Customer() {}
-
-    public Customer(int id, String name, String email) {
+    public CustomerDTO(int id, String name, String email, List<Integer> productIds) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.productIds = productIds;
     }
-
 
     public int getId() {
         return id;
@@ -44,17 +40,11 @@ public class Customer {
         this.email = email;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Integer> getProductIds() {
+        return productIds;
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
-        product.setCustomer(this);
-    }
-
-    public void removeProduct(Product product) {
-        products.remove(product);
-        product.setCustomer(null);
+    public void setProductIds(List<Integer> productIds) {
+        this.productIds = productIds;
     }
 }
