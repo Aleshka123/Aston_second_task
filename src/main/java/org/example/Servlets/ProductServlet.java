@@ -1,14 +1,20 @@
 package org.example.Servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.example.Config.DatabaseConnectionManager;
 import org.example.DTO.ProductDTO;
+import org.example.Repository.ProductRepository;
+import org.example.Repository.ProductRepositoryImpl;
 import org.example.Servise.ProductService;
+import org.example.Servise.ProductServiceImpl;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,8 +24,19 @@ public class ProductServlet extends HttpServlet {
     private final ProductService productService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public ProductServlet(ProductService productService) {
-        this.productService = productService;
+    public ProductServlet() {
+        try {
+            // Получаем DataSource из DatabaseConnectionManager
+            DataSource dataSource = DatabaseConnectionManager.getDataSource();
+
+            // Используем реализацию ProductRepository
+            ProductRepository productRepository = new ProductRepositoryImpl(dataSource);
+
+            // Создаём ProductService с репозиторием
+            this.productService = new ProductServiceImpl(productRepository);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to initialize ProductServlet", e);
+        }
     }
 
     @Override
