@@ -1,3 +1,5 @@
+package customer;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.dto.CustomerDTO;
 import org.example.servise.CustomerService;

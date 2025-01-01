@@ -1,3 +1,5 @@
+package other;
+
 import org.example.dto.CustomerDTO;
 import org.example.dto.ProductDTO;
 import org.junit.jupiter.api.Test;

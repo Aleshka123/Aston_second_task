@@ -1,3 +1,5 @@
+package product;
+
 import org.example.dto.ProductDTO;
 import org.example.entity.Product;
 import org.example.repository.ProductRepository;

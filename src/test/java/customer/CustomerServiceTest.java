@@ -1,3 +1,5 @@
+package customer;
+
 import org.example.dto.CustomerDTO;
 import org.example.entity.Customer;
 import org.example.repository.CustomerRepository;

@@ -1,3 +1,5 @@
+package other;
+
 import org.example.dto.CustomerDTO;
 import org.example.dto.ProductDTO;
 import org.example.mapper.CustomerMapper;

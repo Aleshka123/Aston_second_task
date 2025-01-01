@@ -1,3 +1,5 @@
+package product;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.dto.ProductDTO;
 import org.example.servise.ProductService;

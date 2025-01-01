@@ -1,3 +1,5 @@
+package other;
+
 import org.example.config.DatabaseConnectionManager;
 import org.example.entity.Customer;
 import org.example.entity.Product;

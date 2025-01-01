@@ -26,6 +26,8 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.5.5.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 
+    testImplementation 'com.h2database:h2:2.2.220'
+
     // Jackson для сериализации/десериализации JSON
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.15.2'
@@ -38,10 +40,7 @@ dependencies {
 
     // Логирование (SLF4J + Logback)
     implementation 'ch.qos.logback:logback-classic:1.4.12'
-    // SLF4J-API обычно входит в состав logback-classic,
-    // но если нужно явно, добавляем:
-    // implementation 'org.slf4j:slf4j-api:2.0.9'
-    implementation 'org.eclipse.jetty:jetty-server:12.0.9'
+
     implementation 'org.eclipse.jetty:jetty-servlet:11.0.15'
 
     // JUnit 5 для тестов
@@ -70,6 +69,9 @@ dependencies {
     implementation 'org.postgresql:postgresql:42.7.2'
 
     implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+    testImplementation 'com.h2database:h2'
+
 
 }
 
